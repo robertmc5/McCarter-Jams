@@ -1,5 +1,5 @@
 const clientID = 'CLIENT_ID'; // not showing my Client ID in GitHub remote
-const redirectURI = 'http://localhost:3000/callback/'; // Without '/callback' I got INVALID_CLIENT
+const redirectURI = 'http://mccarterjams.surge.sh';
 var userAccessToken;
 
 const Spotify = {
