@@ -1,39 +1,32 @@
-import React from 'react';
 import './track.css';
 
-class Track extends React.Component {
-  constructor(props) {
-    super(props);
+const Track = (props) => {
 
-    this.addTrack = this.addTrack.bind(this);
-    this.removeTrack = this.removeTrack.bind(this);
+  // builds a + or - button in the return below, 
+  // based on whether Track was called from SearchResults or from Playlist
+  function renderAction() {
+    return props.isRemoval ? 
+      <button className="Track-action" onClick={removeTrack}>-</button>: 
+      <button className="Track-action" onClick={addTrack}>+</button>;
   }
 
-  renderAction() {
-    return this.props.isRemoval ? 
-      <button className="Track-action" onClick={this.removeTrack}>-</button>: 
-      <button className="Track-action" onClick={this.addTrack}>+</button>;
+  const addTrack = () => {
+    props.onAdd(props.track);
   }
 
-  addTrack() {
-    this.props.onAdd(this.props.track);
+  const removeTrack = () => {
+    props.onRemove(props.track);
   }
 
-  removeTrack() {
-    this.props.onRemove(this.props.track);
-  }
-
-  render() {
-    return (
-      <div className="Track">
-        <div className="Track-information">
-          <h3>{this.props.track.name}</h3>
-          <p>{this.props.track.artist} | {this.props.track.album}</p>
-        </div>
-        {this.renderAction()}
+  return (
+    <div className="Track">
+      <div className="Track-info">
+        <h3>{props.track.name}</h3>
+        <p>{props.track.artist} | {props.track.album}</p>
       </div>
-    );
-  }
+      {renderAction()}
+    </div>
+  );
 }
 
 export default Track;

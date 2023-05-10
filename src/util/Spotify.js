@@ -1,5 +1,5 @@
 const clientID = 'CLIENT_ID'; // not showing my Client ID in GitHub remote
-const redirectURI = 'http://mccarterjams.surge.sh';
+const redirectURI = 'http://localhost:3000/callback/';
 var userAccessToken;
 
 const Spotify = {

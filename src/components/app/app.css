@@ -1,52 +1,54 @@
-body,
-html,
-#root {
-  height: 100%;
-}
-
-html {
-  font-size: 18px;
-}
-
 h1 {
-  padding: .77rem 0;
-  background-color: #010c3f;
+  padding: 1.125rem 0;
+  margin: 0;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.88rem;
-  color: #fff;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-header);
+  font-size: 2.0625rem;
+  font-weight: 600;
 }
 
-h1 .highlight {
-  color: #6c41ec;
+.highlight {
+  color: var(--color-span);
 }
 
 h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.55rem;
+  font-family: var(--font-header);
+  font-size: 1.625rem;
 }
 
 .App {
-  height: 100%;
-  padding: 0 17% 10% 17%;
-  background-image: url('./background_photo_desktop.jpg');
+  padding: 0 10% 10% 10%;
+  background-image: url('./OceanHorizonBlueFilter.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--font-selections);
   font-weight: 500;
-  color: #fff;
+  color: var(--color-text);
 }
 
-.App-playlist {
+.App-lists {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-@media only screen and (max-width: 1020px) {
-  .App-playlist {
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+@media only screen and (max-width: 62.5rem) {
+  .App-lists {
     align-items: center;
     flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  .App {
+    padding: 0 4.5% 7% 4.5%;
   }
 }
