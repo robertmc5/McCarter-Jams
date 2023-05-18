@@ -4,6 +4,7 @@ import './app.css';
 import SearchBar from '../searchBar/SearchBar';
 import SearchResults from '../searchResults/SearchResults';
 import Playlist from '../playlist/Playlist';
+import Authorization from '../authorization/Authorization';
 
 import Spotify from '../../util/Spotify';
 
@@ -12,6 +13,10 @@ const App = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState('My Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
+
+  const authorize = () => {
+    Spotify.createTokenRedirect();
+  }
 
   const search = searchTerm => {
     Spotify.search(searchTerm).then(searchResults => {
@@ -46,8 +51,12 @@ const App = () => {
     <div>
       <h1>McCarter <span className="highlight">Jams</span></h1>
       <div className="App">
-        <SearchBar 
+        {!Spotify.access() && <Authorization 
+          onAuthorize={authorize} />
+        }
+        {Spotify.access() && <SearchBar 
           onSearch={search} />
+        }
         <div className="App-lists">
           <SearchResults 
             searchResults={searchResults} 

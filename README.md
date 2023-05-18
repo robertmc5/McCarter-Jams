@@ -1,5 +1,5 @@
 # Jammming  
-## Playlist App With the Spotify API  
+## Playlist App that reads from and writes to the Spotify API  
 ### Allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account  
 #### User must sign into Spotify through the App to use it  
   
@@ -13,6 +13,11 @@ The original styling was a little off, so I re-did that as well.
   
 It does use Implicit Grant Flow upon authentication and access tokens issued are short-lived.  
 *This is a recognized security flaw as it does not involve storing secret keys.*  
+  
+**UPDATE: I redesigned the initial login**  
+In the original design the user had to click Search twice initially to get started.  
+I designed a separate component for the initial access token so it doesn't confuse the user.  
+Now when the user sees a search bar, they have already established access and can search.  
   
 It is deployed with surge and available online at http://mccarterjams.surge.sh  
   

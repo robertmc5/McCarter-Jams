@@ -1,10 +1,22 @@
 const clientID = 'CLIENT_ID'; // not showing my Client ID in GitHub remote
 const redirectURI = 'http://localhost:3000/callback/';
 var userAccessToken;
+var access = userAccessToken || window.location.href.match(/access_token=([^&]*)/) ? true: false;
 
 const Spotify = {
+  access() {
+    return access;
+  },
+
+  createTokenRedirect() {
+    // redirect user to URI to implicit grant access token in the URL
+    const accessURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+    window.location = accessURL;
+    return true;
+  },
+
   getAccessToken() {
-    // check if the user's access token is already set
+    // check if the user's access token is already sent, acquire it and relay it to use with search
     if (userAccessToken) {
       return userAccessToken;
     }
@@ -31,7 +43,10 @@ const Spotify = {
   },
 
   search(searchTerm) {
-    const userAccessToken = Spotify.getAccessToken();
+    if (!userAccessToken) {
+      userAccessToken = Spotify.getAccessToken();
+    }
+
     const baseURLAPI = 'https://api.spotify.com/v1';
     const searchTrack = '/search?type=track&q=';
 

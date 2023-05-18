@@ -19,7 +19,7 @@ h2 {
 }
 
 .App {
-  padding: 0 10% 10% 10%;
+  padding: 5rem 10% 10% 10%;
   background-image: url('./OceanHorizonBlueFilter.png');
   background-size: cover;
   background-position: center;
@@ -49,6 +49,6 @@ h2 {
 
 @media only screen and (max-width: 30rem) {
   .App {
-    padding: 0 4.5% 7% 4.5%;
+    padding: 3rem 4.5% 7% 4.5%;
   }
 }
