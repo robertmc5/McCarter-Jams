@@ -1,4 +1,4 @@
-.Playlist {
+.playlist {
   flex: 0.95;
   min-height: 43.75rem;
   max-height: 62.5rem;
@@ -9,10 +9,10 @@
   box-shadow: 3px 3px 3px var(--color-bg);
 }
 
-.Playlist input {
+.playlist input {
   width: 100%;
   background: #160B6354;
-  border: 1px solid var(--color-span);
+  border: 1px solid var(--color-btn);
   font-family: var(--font-header);
   font-size: 1.75rem;
   color: #E7E1FD;
@@ -20,14 +20,14 @@
   margin-bottom: 0.5rem;
 }
 
-.Playlist-save {
+.playlist-save {
   cursor: pointer;
   padding: 1rem;
   border-radius: 35px;
   border: none;
   display: block;
   margin: 1.5rem auto;
-  background-color: var(--color-span);
+  background-color: var(--color-btn);
   text-align: center;
   font-size: 0.875rem;
   transition: background-color .25s;
@@ -35,22 +35,22 @@
   font-weight: 500;
 }
 
-.Playlist-save:hover {
+.playlist-save:hover {
   background-color: var(--color-hover);
 }
 
-.Playlist-save:active {
+.playlist-save:active {
   color: #000;
 }
 
 @media only screen and (max-width: 62.5rem) {
-  .Playlist {
+  .playlist {
     width: 95%;
   }
 }
 
 @media only screen and (max-width: 30rem) {
-  .Playlist {
+  .playlist {
     width: 100%;
   }
 }

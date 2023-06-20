@@ -1,4 +1,4 @@
-import TrackList from '../trackList/TrackList';
+import TrackList from '../../components/trackList/TrackList';
 import './searchResults.css';
 
 const SearchResults = (props) => {

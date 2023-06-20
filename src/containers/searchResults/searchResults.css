@@ -11,7 +11,16 @@
 }
 
 .SearchResults h2 {
-  border-bottom: 1px solid var(--color-span);
+  width: 100%;
+  margin-bottom: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-family: var(--font-header);
+  font-size: 1.5rem;
+  background-color: var(--color-dark);
+  color: var(--color-span);
 }
 
 @media only screen and (max-width: 62.5rem) {
