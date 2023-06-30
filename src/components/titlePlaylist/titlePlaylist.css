@@ -1,0 +1,38 @@
+.TitlePlaylist {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.33);
+  padding: 0.75rem 0;
+}
+
+.TitlePlaylist img {
+  width: 50px;
+  height: 50px;
+}
+
+.TitlePlaylist h3 {
+  margin: 0 0 0.25rem 1rem;
+  font-weight: 500;
+}
+
+.TitlePlaylist p {
+  margin-left: 1rem;
+  font-weight: 300;
+  font-size: .875rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.activeSelect {
+  background-color: var(--color-hover);
+  color: var(--color-dark);
+}
+
+.activeSelect h3 {
+  font-weight: 600;
+}
+
+.activeSelect p {
+  font-weight: 400;
+  color: #fff;
+}

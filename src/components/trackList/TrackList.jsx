@@ -5,9 +5,9 @@ const TrackList = (props) => {
   return (
     <div className="TrackList">
       {props.tracks.map(
-        trackObj => <Track 
-          track={trackObj} 
-          key={trackObj.id} 
+        track => <Track 
+          track={track} 
+          key={track.id} 
           onAdd={props.onAdd} 
           onRemove={props.onRemove}
           isRemoval={props.isRemoval} />

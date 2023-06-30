@@ -8,15 +8,17 @@ const NewPlaylist = (props) => {
   }
 
   return (
-    <div className="playlist">
+    <div className='playlist'>
       <PlaylistPanel  
         onSwitch={props.onSwitch}
         title="Create New Playlist" />
       <input value={props.newPlaylistName} onChange={handleNameChange} />
-      <TrackList 
-        tracks={props.newPlaylistTracks} 
-        onRemove={props.onRemove}
-        isRemoval={true} />
+      <div className="playlist-tracks">
+        <TrackList 
+          tracks={props.newPlaylistTracks} 
+          onRemove={props.onRemove}
+          isRemoval={true} />
+      </div>
       <button className="playlist-save" onClick={props.onSave}>SAVE TO SPOTIFY</button>
     </div>
   );

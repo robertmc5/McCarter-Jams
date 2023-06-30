@@ -1,4 +1,5 @@
 import './playlistPanel.css';
+import Spotify from '../../util/Spotify';
 
 const PlaylistPanel = ({ onSwitch, title }) => {
 
@@ -7,12 +8,13 @@ const PlaylistPanel = ({ onSwitch, title }) => {
   }
   return (
     <div className="PlaylistPanel">
-      <div className='PlaylistPanel-btns'>
+      {Spotify.access() && <div className='PlaylistPanel-btns'>
         <button type='button' value='New' onClick={handleSwitch}>Create New<br />Playlist</button>
         <button type='button' value='All' onClick={handleSwitch}>Display All<br />Playlists</button>
         <button type='button' value='Edit' onClick={handleSwitch}>Edit/View<br />Playlist</button>
       </div>
-      <div className='PlaylistPanel-title'>
+      }
+      <div className='PlaylistPanel-title' style={{marginTop: Spotify.access() ? '1rem': '0'}}>
         {title}
       </div>
     </div>

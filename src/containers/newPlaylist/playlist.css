@@ -1,12 +1,17 @@
 .playlist {
   flex: 0.95;
-  min-height: 43.75rem;
-  max-height: 62.5rem;
   height: 100%;
-  overflow-y: scroll;
   padding: 1rem;
   background-color: var(--color-translucent-75);
   box-shadow: 3px 3px 3px var(--color-bg);
+}
+
+.playlist-tracks,
+.listOfPlaylists {
+  min-height: 23.8125rem;
+  max-height: 42.5625rem;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .playlist input {
@@ -15,9 +20,26 @@
   border: 1px solid var(--color-btn);
   font-family: var(--font-header);
   font-size: 1.75rem;
-  color: #E7E1FD;
+  color: #d0cbe4;
   padding-left: 0.375rem;
   margin-bottom: 0.5rem;
+}
+
+.userNameAndTotal {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #d0cbe4;
+  margin-bottom: 0.5rem;
+  padding-bottom: 9px;
+}
+
+.userNameAndTotal h3 {
+  font-size: 1.5rem;
+}
+
+.userNameAndTotal p {
+  font-size: 1rem;
 }
 
 .playlist-save {
@@ -43,9 +65,21 @@
   color: #000;
 }
 
+.notice {
+  text-align: center;
+  font-family: var(--font-header);
+  font-size: 17px;
+  color: var(--color-span);
+  padding-block: 26px 10px;
+}
+
 @media only screen and (max-width: 62.5rem) {
   .playlist {
     width: 95%;
+  }
+  .playlist-tracks,
+  .listOfPlaylists {
+    min-height: 5.0625rem;
   }
 }
 

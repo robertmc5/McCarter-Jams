@@ -1,7 +1,7 @@
 .Track {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(218, 218, 218, 0.85);
   padding: 0.75rem 0;
 }
 

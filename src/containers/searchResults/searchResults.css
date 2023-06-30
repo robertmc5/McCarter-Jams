@@ -1,22 +1,26 @@
 .SearchResults {
   flex: 1.1;
-  min-height: 43.75rem;
-  max-height: 62.5rem;
   height: 100%;
   margin: 0 5% 0 0;
-  overflow-y: scroll;
   padding: 1rem;
   background-color: var(--color-translucent-67);
   box-shadow: 3px 3px 3px var(--color-bg);
 }
 
+.SearchResults-tracks {
+  height: 100%;
+  min-height: 37.4375rem;
+  max-height: 56.1875rem;
+  overflow-y: scroll;
+}
+
 .SearchResults h2 {
   width: 100%;
-  margin-bottom: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  margin-bottom: 0.5rem;
   font-family: var(--font-header);
   font-size: 1.5rem;
   background-color: var(--color-dark);
@@ -27,6 +31,9 @@
   .SearchResults {
     width: 95%;
     margin: 0 0 3.5rem 0;
+  }
+  .SearchResults-tracks {
+    min-height: 12.4375rem;
   }
 }
 
