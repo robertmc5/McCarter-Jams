@@ -12,14 +12,15 @@ const AllPlaylists = (props) => {
         onSwitch={props.onSwitch}
         title="Display All Playlists" />
       
-      {isLoading ? <span className='highlight'>Loading...</span>
-        : <div className='userNameAndTotal'>
+      {isLoading ? 
+        <span className='highlight line-height'>Loading...</span>
+        : <div className='user-name-and-total'>
             <h3>{props.userNameAndTotal[0]}</h3>
             <p>{props.userNameAndTotal[1]} playlists</p>
           </div>
       }
 
-      <div className="listOfPlaylists">
+      <div className="list-of-playlists">
         {props.allPlaylists.map(item => 
           <TitlePlaylist 
             item={item} 
@@ -29,7 +30,7 @@ const AllPlaylists = (props) => {
         )}
       </div>
 
-      <div className='notice'>
+      <div className='how-to-select'>
         <p>To Edit/View A Playlist</p>
         <p>Select Playlist</p>
         <p>then Edit/View Button</p>

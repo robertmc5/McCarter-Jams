@@ -1,4 +1,4 @@
-const clientID = 'a517f329967b4c43a354ea84989eeae8'; // display as CLIENT_ID in GitHub
+const clientID = 'CLIENT_ID'; // not showing my Client ID in GitHub remote
 const redirectURI = 'http://localhost:3000/callback/';
 var userAccessToken;
 var access = userAccessToken || window.location.href.match(/access_token=([^&]*)/) ? true: false;
@@ -43,14 +43,25 @@ const Spotify = {
     }
   },
 
-  parseTracksInfo(jsonResponse) {
-    // helper function defines five usable properties of tracks
-    return jsonResponse.tracks.items.map(track => ({
+  parseSearchTracksInfo(jsonResponse) {
+    // helper function defines five usable properties of tracks for search
+    return jsonResponse.map(track => ({
       id: track.id,
       name: track.name,
       artist: track.artists[0].name,
       album: track.album.name,
       uri: track.uri
+    }))
+  },
+
+  parseExistingPlaylistTracksInfo(jsonResponse) {
+    // helper function defines five usable properties of tracks for existing playlist
+    return jsonResponse.map(item => ({
+      id: item.track.id,
+      name: item.track.name,
+      artist: item.track.artists[0].name,
+      album: item.track.album.name,
+      uri: item.track.uri
     }))
   },
 
@@ -77,7 +88,7 @@ const Spotify = {
       if (!jsonResponse.tracks) {
         return [];
       }
-      return this.parseTracksInfo(jsonResponse);
+      return this.parseSearchTracksInfo(jsonResponse.tracks.items);
     });
   },
 
@@ -89,7 +100,7 @@ const Spotify = {
   },
 
   getUserId(headers) {
-    // helper function GETs current user ID from Spotify API
+    // helper function GETs current user ID (and name) from Spotify API
     const currentUserProfileURL = 'https://api.spotify.com/v1/me';
 
     return fetch(currentUserProfileURL, {headers: headers}
@@ -103,7 +114,7 @@ const Spotify = {
   },
 
   savePlaylist (name, trackURIs) {
-    // create and save a new playlist (name and tracks) on the user's Spotify account
+    // CREATE and save a new playlist (name and tracks) on the user's Spotify account
     if (!trackURIs.length) {
       return;
     }
@@ -172,6 +183,90 @@ const Spotify = {
           }));
           return [playlists, userName, totalPlaylists];
         });
+  },
+
+  getSelectedPlaylist( selectPlaylist ) {
+    // GET the user's selected playlist from Spotify
+    const headers = this.getHeaders();
+    let userID;
+    let playlistID = selectPlaylist;
+    let playlistName;
+
+    return this.getUserId(headers).then(userId => {
+      userID = userId[0];
+      const getPlaylistURL = `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}`;
+      return fetch(getPlaylistURL, {headers: headers});
+      }).then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error(`Request failed. Status: ${response.status}`);
+        }, error => console.error(error.message)
+      ).then(jsonResponse => {
+        playlistName = jsonResponse.name;
+        return [this.parseExistingPlaylistTracksInfo(jsonResponse.tracks.items), playlistName];
+      });
+  },
+
+  deletePlaylist (playlistID) {
+    // helper function deletes existing playlist when all tracks have been removed
+    // technically Spotify doesn't delete the playlist_id, the user merely unfollows it, it no longer appears as a playlist
+    const headers = this.getHeaders();
+    let userID;
+    
+    return this.getUserId(headers).then(userId => {
+      userID = userId[0];
+      // API Ref: https://developer.spotify.com/documentation/web-api/concepts/playlists#following-and-unfollowing-a-playlist
+      const deletePlaylistURL = `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/followers`;
+      return fetch(deletePlaylistURL, {
+        headers: headers,
+        method: 'DELETE'
+        });
+      }).then(response => {
+        if (response.ok) {
+          return; // It's an empty response
+        }
+        throw new Error(`Request failed. Status: ${response.status}`);
+        }, error => console.error(error.message)
+      );
+  },
+
+  updatePlaylist (playlistID, name, trackURIs) {
+    // UPDATE and save an existing playlist (name and tracks) on the user's Spotify account
+    if (!trackURIs.length) {
+      return this.deletePlaylist(playlistID);
+    }
+    if (!name) {
+      name = 'Unnamed Playlist';
+    }
+    const headers = this.getHeaders();
+    headers['Content-Type'] = 'application/json';
+    let userID;
+    
+    return this.getUserId(headers).then(userId => {
+      userID = userId[0];
+      // API Ref: https://developer.spotify.com/documentation/web-api/reference/change-playlist-details
+      const changePlaylistNameURL = `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}`;
+      return fetch(changePlaylistNameURL, {
+        headers: headers,
+        method: 'PUT',
+        body: JSON.stringify( {name: name} )
+        });
+      }).then(response => {
+        if (response.ok) {
+          return; // It's an empty response
+        }
+        throw new Error(`Request failed. Status: ${response.status}`);
+        }, error => console.error(error.message)
+      ).then( () => {
+        // API Ref: https://developer.spotify.com/documentation/web-api/reference/reorder-or-replace-playlists-tracks
+        const changePlaylistTracksURL = `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`;
+        return fetch(changePlaylistTracksURL, {
+          headers: headers,
+          method: 'PUT',
+          body: JSON.stringify( {uris: trackURIs} )
+        });
+    });
   }
 };
 
