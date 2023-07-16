@@ -110,7 +110,7 @@ const App = () => {
         setExistingPlaylistId('');
         setAllPlaylists([]);
         setEditingExisting(false);
-        if (unfollow) { setSelectPlaylist(''); }
+        if (unfollow && !getNextPlaylist) { setSelectPlaylist(''); }
       }).then( () => {
         if (!getNextPlaylist) {
           setPlaylistPanel('All');
