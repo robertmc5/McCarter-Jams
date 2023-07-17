@@ -1,0 +1,151 @@
+.playlist {
+  flex: 0.95;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--color-translucent-75);
+  box-shadow: 3px 3px 3px var(--color-bg);
+}
+
+.playlist-tracks,
+.list-of-playlists {
+  min-height: 23.8125rem;
+  max-height: 42.5625rem;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.playlist input {
+  width: 100%;
+  background: #160B6354;
+  border: 1px solid var(--color-btn);
+  font-family: var(--font-header);
+  font-size: 1.75rem;
+  color: #d0cbe4;
+  padding-left: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-name-and-total {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #d0cbe4;
+  margin-bottom: 0.5rem;
+  padding-bottom: 9px;
+}
+
+.user-name-and-total h3 {
+  font-size: 1.5rem;
+}
+
+.user-name-and-total p {
+  font-size: 1rem;
+}
+
+.playlist-save {
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 35px;
+  border: none;
+  display: block;
+  margin: 1.5rem auto;
+  background-color: var(--color-btn);
+  text-align: center;
+  font-size: 0.875rem;
+  transition: background-color .25s;
+  color: #fff;
+  font-weight: 500;
+}
+
+.playlist-save:hover {
+  background-color: var(--color-hover);
+}
+
+.playlist-save:active {
+  color: #000;
+}
+
+.how-to-select {
+  text-align: center;
+  font-family: var(--font-header);
+  font-size: 17px;
+  color: var(--color-span);
+  padding-block: 26px 10px;
+}
+
+.no-selection {
+  text-align: center;
+  font-size: 19px;
+  font-style: italic;
+  padding-block: 11px 12px;
+}
+
+.line-height {
+  line-height: 46px;
+}
+
+.edits-warning {
+  background-color: #ff3333;
+  color: var(--color-text);
+  font-family: var(--font-header);
+  font-size: 19px;
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+#edits-warning_playlist {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+.edits-warning_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  margin: 0.5rem auto 0;
+}
+
+.edits-warning_buttons button {
+  width: 100%;
+  padding: 0.625rem;
+  margin: 0.5rem 0;
+  background-color: var(--color-text);
+  transition: background-color .12s, color .12s;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.edits-warning_buttons button:hover {
+  background-color: var(--color-hover);
+  color: #fff;
+  outline: 1px solid var(--color-dark);
+}
+
+@media only screen and (max-width: 62.5rem) {
+  .playlist {
+    width: 95%;
+  }
+  .playlist-tracks,
+  .list-of-playlists {
+    min-height: 5.0625rem;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  .playlist {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 21.875rem) {
+  .no-selection {
+    font-size: 1rem;
+  }
+}

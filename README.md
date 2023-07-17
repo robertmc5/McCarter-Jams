@@ -1,9 +1,9 @@
-# Jammming  
-## Playlist App that reads from and writes to the Spotify API  
+# McCarter Jams  
+## Music Playlist App that reads from and writes to the Spotify API  
 ### Allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account  
 #### User must sign into Spotify through the App to use it  
   
-This project is through Codecademy Front-End Engineer Career Path - React Part II.  
+This project is an adapted and expanded version of a Codecademy Front-End Engineer Career Project.  
   
 **UPDATE: I rewrote all the React components**  
 They were originally created as class components, but I replaced them with function components.  
