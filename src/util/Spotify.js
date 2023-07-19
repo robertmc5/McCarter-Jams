@@ -1,5 +1,5 @@
 const clientID = 'CLIENT_ID'; // not showing my Client ID in GitHub remote
-const redirectURI = 'http://localhost:3000/callback/';
+const redirectURI = 'https://mccarterjams.surge.sh/callback';
 var userAccessToken;
 var access = userAccessToken || window.location.href.match(/access_token=([^&]*)/) ? true: false;
 
